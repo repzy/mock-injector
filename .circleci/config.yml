@@ -1,0 +1,20 @@
+version: 2.1
+
+orbs:
+  ci: bigcommerce/internal@volatile
+  php: bigcommerce/internal-php@volatile
+
+jobs:
+  tests:
+    executor: php/php
+    steps:
+      - ci/pre-setup
+      - php/composer-install
+      - php/unit-phpunit:
+          configuration: 'phpunit.xml'
+
+workflows:
+  version: 2
+  full:
+    jobs:
+      - tests
